@@ -6,6 +6,7 @@
 package calls;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.Statement;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -30,7 +31,7 @@ public class GenericResource {
     static final String DB_URL = "jdbc:oracle:thin:@144.217.163.57:1521:XE";
     
     
-    static final String USER = "HR";
+    static final String USER = "SALES";
     static final String PASS = "cegepgim";
     
     JSONArray mainJsonAraay = new JSONArray();
@@ -71,6 +72,36 @@ public class GenericResource {
     public void putXml(String content) {
     }
     
+    @GET
+    @Path("clientList")
+    @Produces("application/json")
+    public String clientList() {
+        
+        
+           
+        return "";
+    }
+    
+    
+    public Connection getCon()
+    {
+         Connection conn = null;
+        try
+        {
+            //Register JDBC Driver
+            Class.forName(JDBC_DRIVER);
+            
+            //Open Connection
+           
+            System.out.println("Connecting to database...");
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+      return conn;
+    }
     
     
     
