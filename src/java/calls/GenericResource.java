@@ -75,6 +75,36 @@ public class GenericResource {
     public void putXml(String content) {
     }
     
+    @GET
+    @Path("clientList")
+    @Produces("application/json")
+    public String clientList() {
+        
+        
+           
+        return "";
+    }
+    
+    
+    public Connection getCon()
+    {
+         Connection conn = null;
+        try
+        {
+            //Register JDBC Driver
+            Class.forName(JDBC_DRIVER);
+            
+            //Open Connection
+           
+            System.out.println("Connecting to database...");
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+      return conn;
+    }
     
        @GET
     @Path("singleClient&{id}")
