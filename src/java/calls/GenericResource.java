@@ -5,6 +5,8 @@
  */
 package calls;
 
+import java.sql.Connection;
+import java.sql.Statement;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -13,6 +15,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 /**
  * REST Web Service
@@ -21,7 +25,23 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("generic")
 public class GenericResource {
-
+    
+    static final String JDBC_DRIVER = "oracle.jdbc.OracleDriver";
+    static final String DB_URL = "jdbc:oracle:thin:@144.217.163.57:1521:XE";
+    
+    
+    static final String USER = "HR";
+    static final String PASS = "cegepgim";
+    
+    JSONArray mainJsonAraay = new JSONArray();
+    JSONObject singleObj = new JSONObject();
+    
+    Connection conn = null;
+    Statement stmt = null;
+    Statement Hstmt = null;
+         
+    
+    
     @Context
     private UriInfo context;
 
@@ -50,6 +70,8 @@ public class GenericResource {
     @Consumes(MediaType.APPLICATION_XML)
     public void putXml(String content) {
     }
+    
+    
     
     
     
